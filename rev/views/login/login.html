@@ -1,0 +1,73 @@
+<div class="login">
+    <div ng-header></div>
+    <div class="login-bd">
+        <div class="row">
+            <form name="loginForm" class="loginBox" novalidate>
+                <div class="loginBox-hd">
+                    <span>查询订单</span>
+                </div>
+                <div class="mobileLoginWrap">
+                    <div class="cnt-box">
+                        <div class="m-cnt">
+                            <div class="u-tab f-cb">
+                                <a>请使用手机号 + 验证码登录</a>
+                            </div>
+                            <div class="inputbox"
+                                 ng-class="{'error':loginForm.mobile.$dirty && loginForm.mobile.$invalid}">
+                                <div class="u-logo">
+                                    <div></div>
+                                </div>
+                                <div class="u-input box">
+                                    <input type="tel" autocomplete="off" name="mobile" ng-model="mobile"
+                                           placeholder="请输入手机号" ng-pattern="/^[0-9]*$/" pattern="[0-9]*"
+                                           ng-maxlength="11" ng-minlength="11" required>
+                                </div>
+                                <div class="u-tip">
+                                    <div class="u-success u-clear"></div>
+                                </div>
+                            </div>
+
+                            <div class="active-code">
+                                <div class="input-group">
+                                    <div class="inputbox"
+                                         ng-class="{'error':loginForm.code.$dirty && loginForm.code.$invalid}">
+                                        <div class="u-input">
+                                            <input ng-keypress="keyPress($event,mobile,code)" type="tel"
+                                                   autocomplete="off" placeholder="请输入短信验证码" ng-pattern="/^[0-9]*$/"
+                                                   pattern="[0-9]*" name="code" ng-model="code" ng-maxlength="4"
+                                                   ng-minlength="4"
+                                                   required>
+                                        </div>
+                                        <div class="u-tip">
+                                            <div class="u-success u-clear"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="active-btn">
+                                        <a href="javascript:void(0);" ng-click="getCode($event,mobile);"
+                                           ng-class="{'disabled':loginForm.mobile.$invalid || !activeClass}">{{activeText}}</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="m-error" ng-show="isSubmit && loginForm.$invalid || loginError">
+                                <div class="error-icon"></div>
+                                <div class="error-txt">
+                                    <span ng-show="loginForm.mobile.$invalid">请输入正确的手机号</span>
+                                    <span ng-show="loginForm.code.$invalid && loginForm.mobile.$valid">请输入正确的验证码</span>
+                                    <span ng-show="loginForm.code.$valid && loginForm.mobile.$valid && loginError">{{loginError}}</span>
+                                </div>
+                            </div>
+
+                            <div class="loginBtn">
+                                <a ng-click="submit(mobile,code)" href="javascript:;">登 录</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div ng-footer></div>
+</div>

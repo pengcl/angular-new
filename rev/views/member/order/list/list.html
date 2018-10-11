@@ -1,0 +1,220 @@
+<div class="order-list">
+    <div ng-header></div>
+    <div class="list-bd">
+        <div class="row">
+            <div class="crumbs">
+                <a href="/">首页</a>
+                <span class="icons arrow-right-hollow"></span>
+                <span class="curr">我的订单</span>
+            </div>
+            <div class="orders">
+                <!--<div class="g-sub">
+                    <div id="sideBarRoot">
+                        <div class="m-sideBar">
+                            <div class="m-sideItem">
+                                <div class="hd sideText">帐号管理</div>
+                                <div class="bd">
+                                    <ul>
+                                        <li><a target="" href="/user/index" class="w-menu-item sideText">个人中心</a></li>
+                                        <li>
+                                            <a target="" href="/msgCenter" class="w-menu-item sideText">
+                                                <span style="position: relative;">消息通知<span
+                                                        class="unReadedMessageRemind j-unReadedMessageRemind"
+                                                        style="top: -2px; display: inline;"></span></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="m-sideItem" data-reactid=".2.2">
+                                <div class="hd sideText" data-reactid=".2.2.0">服务中心</div>
+                                <div class="bd" data-reactid=".2.2.1">
+                                    <ul data-reactid=".2.2.1.0">
+                                        <li data-reactid=".2.2.1.0.$0"><a target="" href="/aftersale/list"
+                                                                          class="w-menu-item sideText"
+                                                                          data-reactid=".2.2.1.0.$0.0">售后记录</a></li>
+                                        <li data-reactid=".2.2.1.0.$1"><a target="" href="/priceProtect/list"
+                                                                          class="w-menu-item sideText"
+                                                                          data-reactid=".2.2.1.0.$1.0">价格保护</a></li>
+                                        <li data-reactid=".2.2.1.0.$2"><a target="" href="/help/new"
+                                                                          class="w-menu-item sideText"
+                                                                          data-reactid=".2.2.1.0.$2.0">帮助中心</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="g-main">
+                    <div id="j-orderListContainer">
+                        <div class="m-orderList">
+                            <!--<div class="m-filter">
+                                <div class="m-commonTab orderListTab">
+                                    <div class="innerWrap theme2">
+                                        <ul>
+                                            <li class="item active">
+                                                <a href="javascript:;">全部订单</a>
+                                            </li>
+                                            <li class="item"><a href="javascript:;">待付款&nbsp;<span
+                                                    class="orderItemNum"></span></a></li>
+                                            <li class="item"><a href="javascript:;">待发货&nbsp;<span
+                                                    class="orderItemNum"></span></a></li>
+                                            <li class="item"><a href="javascript:;">已发货&nbsp;<span
+                                                    class="orderItemNum">&nbsp;1</span></a></li>
+                                            <li class="item"><a href="javascript:;">待评价&nbsp;<span
+                                                    class="orderItemNum"></span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="j-searchFilter m-searchFilter">
+                                    <input type="text" class="w-orderFilterInput j-orderSearchInput"
+                                           placeholder="输入商品名称或订单号搜索">
+                                    <input type="submit" class="w-button w-orderFilterSubmitBtn j-orderFilterSubmitBtn"
+                                           value="搜索">
+                                </div>
+                            </div>-->
+                            <!--<div class="m-noticeInfo">
+                                <div class="m-noticeList noticeList limitLength j-topNoticeList" style="display:block;">
+                                    <ul class="j-list list">
+                                        <li class="j-notice notice">
+                                            <span></span>
+                                            <a class="txt f-text-underline" href="javascript:;" target="_blank">9月29日-10月7日发货延迟公告</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>-->
+                            <div class="m-panels">
+                                <div ng-if="orders.length < 1" class="no-fund">
+                                    您暂时没有订单 <a href="/index">去逛逛></a>
+                                </div>
+                                <table ng-repeat="order in orders" class="m-orderItem" cellpadding="0">
+                                    <colgroup>
+                                        <col class="w1">
+                                        <col class="w2">
+                                        <!--<col class="w3">-->
+                                    </colgroup>
+                                    <tbody>
+                                    <tr class="head">
+                                        <th colspan="2">
+                                                    <span class="dealtime">
+                                                        <span>下单时间：</span><span>{{order.createTime}}</span></span>
+                                            <span class="number"><span>订单号：</span><span>{{order.orderNo}}</span></span>
+                                        </th>
+                                    </tr>
+                                    <tr class="body">
+                                        <td>
+                                            <div>
+                                                <div class="packageItem">
+                                                    <div class="good">
+                                                        <div ng-repeat="prod in order.itemList" class="good-item">
+                                                            <a class="link" href="javascript:;" target="_blank">
+                                                                <img src="{{prod.productImg}}"
+                                                                     width="100px" height="100px">
+                                                            </a>
+                                                            <div class="info">
+                                                                <a class="f-fz14"
+                                                                   href="/order/getDetail?orderId=62724701"
+                                                                   target="_blank">{{prod.productName}}</a>
+                                                                <p class="feedback">{{order.traderemark}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="express">
+                                                        <div class="cell">
+                                                            <div class="f-txt-assist">
+                                                                <span>数量</span><span>{{order.totalquantity}}</span>
+                                                            </div>
+                                                            <!--<a href="javascript:;" class="w-link">追踪物流</a>-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="status">
+                                                        <div class="cell">
+                                                            <div>
+                                                                <span ng-if="order.orderStatus === 1">备货中</span>
+                                                                <span ng-if="order.orderStatus === 2">已发货</span>
+                                                                <span ng-if="order.orderStatus === 3">退货中</span>
+                                                                <span ng-if="order.orderStatus === 6">已取消</span>
+                                                                <span ng-if="order.orderStatus === 7">已完成</span>
+                                                            </div>
+                                                            <!--<div>
+                                                                <a href="javascript:;"
+                                                                   class="w-button w-button-primary mt8">确认收货</a>
+                                                            </div>
+                                                            <span></span>
+                                                            <div class="w-link w-rebuyBtn">
+                                                                再次购买
+                                                            </div>
+                                                            <div>
+                                                                <a class="w-link" href="javascript:;">申请售后</a>
+                                                            </div>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cost">
+                                                <p class="price">
+                                                    <span>¥</span><span>{{order.totalAmount}}</span>
+                                                </p>
+                                                <p class="fee">
+                                                    <span>（运费：包邮）</span>
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <!--<td>
+                                            <div class="f-txtcenter">
+                                                <a class="w-link" href="javascript:;" target="_blank">查看详情</a>
+                                            </div>
+                                        </td>-->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="m-pager j-pager"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="g-recommend">
+                    <div class="recommend-warp">
+                        <div class="m-slickWarp">
+                            <div class="slickHead">
+                                <h3 class="title">猜你喜欢</h3>
+                            </div>
+                            <div class="m-slick">
+                                <div class="slickContent">
+                                    <ul class="item-list" ng-style="{'width':240 * prods.length}">
+                                        <li ng-repeat="prod in recommends | limitTo: 12" class="item">
+                                            <div class="product">
+                                                <div class="p-hd">
+                                                    <a href="/item/{{prod.productId}}">
+                                                        <img ng-src="{{prod.mainImageUrl}}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="p-bd">
+                                                    <div class="tags">
+                                                        <span class="tag">特价</span>
+                                                    </div>
+                                                    <h4 class="name"><a href="/item/{{prod.productId}}">{{prod.productName}}</a>
+                                                    </h4>
+                                                    <p class="price">
+                                                        <span class="retail-price"><span>¥</span><span>{{prod.salesPrice}}</span></span><span
+                                                            class="counter-price"><span>¥</span><span>{{prod.originalPrice}}</span></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="arrows leftArrow" style="display: block;"></div>
+                                <div class="arrows rightArrow" style="display: block;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-footer></div>
+</div>

@@ -1,0 +1,93 @@
+<div class="list">
+    <div ng-header></div>
+    <div class="list-bd">
+        <div class="row">
+            <div class="crumbs">
+                <a href="/">首页</a>
+                <span class="icons arrow-right-hollow"></span>
+                <a href="/list?id={{id}}">{{catalog.name}}</a>
+                <span ng-if="subId" class="icons arrow-right-hollow"></span>
+                <span ng-if="subId" class="curr">{{cataName}}</span>
+            </div>
+
+            <div class="banner">
+                <div ng-if="imgUrls" class="owl-carousel" img-urls="imgUrls"></div>
+            </div>
+            <div class="goods">
+                <div class="sort-bar">
+                    <div class="category">
+                        <span class="name">分类：</span>
+                        <div class="category-group">
+                            <a href="./list?id={{id}}" class="category-item {{!subId ? 'active' : ''}}">全部</a>
+                            <a ng-repeat="item in catalog.childList" href="./list?id={{id}}&subId={{item.id}}" class="category-item {{subId == item.id ? 'active' : ''}}">{{item.name}}</a>
+                        </div>
+                    </div>
+                    <!--<div class="sorts">
+                        <span class="name">排序：</span>
+                        <a href="javascript:;" class="sort sort-default active">默认</a>
+                        <a href="javascript:;" class="sort sort-price">
+                            <span>价格</span>
+                            <div class="icon">
+                                <i class="icons arrow-up-gray"></i>
+                                <i class="icons arrow-down-gray"></i>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="sort sort-time">
+                            <span>上架时间</span>
+                            <i class="icons arrow-down-gray-l"></i>
+                        </a>
+                        <span></span>
+                    </div>-->
+                </div>
+
+                <div class="content">
+                    <div class="content-hd">
+                        <h1 class="title clearfix"><span>{{cataName}}</span></h1>
+                        <h2 class="desc">
+                            <span ng-show="id=='10000097480426'">
+                                <span ng-show="subId == '10000097851751'">CK制造商直供</span>
+                                <span ng-show="subId == '10000097851693'">华歌尔制造商直供</span>
+                                <span ng-show="subId != '10000097851751' && subId != '10000097851693'">华歌尔、CK等制造商直供</span>
+                            </span>
+                            <span ng-show="id == '10000097480440'">LACOSTE制造商直供</span>
+                            <span ng-show="id == '10000098490415'">阿玛尼制造商直供</span>
+                        </h2>
+                    </div>
+                    <div class="content-bd">
+                        <ul class="item-list">
+                            <li ng-repeat="prod in prods" class="item">
+
+                                <div class="product">
+                                    <div class="p-hd">
+                                        <a href="/item/{{prod.productId}}" target="_blank">
+                                            <img src="{{prod.mainImageUrl}}"/>
+                                        </a>
+                                    </div>
+                                    <div class="p-bd">
+                                        <div class="tags">
+                                            <span class="tag">{{prod.preContract}}</span>
+                                        </div>
+                                        <h4 class="name"><a href="/item/{{prod.productId}}" target="_blank">{{prod.productName}}</a></h4>
+                                        <p class="price">
+                                            <span class="retail-price"><span>¥</span><span>{{prod.salesPrice}}</span></span><span
+                                                class="counter-price"><span>¥</span><span>{{prod.originalPrice}}</span></span>
+                                        </p>
+                                        <div>
+                                            <hr>
+                                            <p class="desc">{{prod.shoppingGuide.length >= 30 ? prod.shoppingGuide.slice(0,30) + '...' : prod.shoppingGuide}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content-ft">
+                        <p ng-if="isLoading" class="">- 数据加载中 -</p>
+                        <p ng-if="finished" class="">- 加载完毕 -</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-footer></div>
+</div>

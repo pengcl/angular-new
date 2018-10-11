@@ -1,0 +1,105 @@
+<div class="index">
+    <div ng-header></div>
+    <div class="banner">
+        <div class="owl-carousel" img-urls="imgUrls"></div>
+    </div>
+    <div class="platfor">
+        <div class="row">
+            <ul class="site-ensure">
+                <li class="item" style="width: 35%;">
+                    <div class="item-box">
+                        <i style="background-image: url(/static/images/index/3.png)"></i><span>大牌制造商直供</span>
+                    </div>
+                </li>
+                <li class="item" style="width: 35%;">
+                    <div class="item-box">
+                        <i style="background-image: url(/static/images/index/2.png)"></i><span>全平台包邮货到付款</span>
+                    </div>
+                </li>
+                <li class="item" style="width: 30%;">
+                    <div class="item-box">
+                        <i style="background-image: url(/static/images/index/1.png)"></i><span>7天无忧退货</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="new-products row">
+        <div class="box">
+            <div class="hd">
+                <div class="hd-l">
+                    <a href="/list">
+                        <h3 class="title">精选好货</h3>
+                        <small class="sub-title">每日为您推荐精选好货</small>
+                    </a>
+                </div>
+                <div class="hd-r">
+                    <!--<a class="more" href="/list">更多好货 ></a>-->
+                </div>
+            </div>
+            <div class="bd">
+                <div ng-if="recommends" class="owl-recommends item-list" items="recommends"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="categories">
+        <div class="row">
+            <div class="category" ng-repeat="catalog in catalogs">
+                <div class="box">
+                    <div class="hd">
+                        <div class="hd-l">
+                            <a href="/list?id={{catalog.id}}">
+                                <h3 class="title">{{catalog.name}}</h3>
+                                <small ng-show="catalog.id == '10000097480426'" class="sub-title">华歌尔、CK等制造商直供</small>
+                                <small ng-show="catalog.id == '10000097480440'" class="sub-title">LACOSTE制造商直供</small>
+                                <small ng-show="catalog.id == '10000098490415'" class="sub-title">阿玛尼制造商直供</small>
+                            </a>
+                        </div>
+                        <div class="hd-r">
+                            <div ng-repeat="sub in catalog.sub" class="sub-cate-list">
+                                <b ng-if="$index !== 0" class="spilt">/</b>
+                                <span class="cate-item"><a href="/list?id={{catalog.id}}&subId={{sub.id}}">{{sub.name}}</a></span>
+                            </div>
+                            <a class="more" href="/list?id={{catalog.id}}">更多 ></a>
+                        </div>
+                    </div>
+                    <div class="ad">
+                        <a href="/list?id={{catalog.id}}">
+                            <img src="/static/images/index/cate-ad-{{catalog.id}}.jpg">
+                        </a>
+                    </div>
+                    <div class="bd">
+                        <ul class="item-list">
+                            <li ng-repeat="prod in catalog.products | limitTo: 8" class="item">
+                                <div class="product">
+                                    <div class="p-hd">
+                                        <a href="/item/{{prod.productId}}" target="_blank">
+                                            <img lazy-src="{{prod.mainImageUrl}}"/>
+                                        </a>
+                                        <span class="tag" ng-bind="prod.productCategoryName | curCate"></span>
+                                    </div>
+                                    <div class="p-bd">
+                                        <div class="tags">
+                                            <span class="tag">{{prod.preContract}}</span>
+                                        </div>
+                                        <h4 class="name"><a href="/item/{{prod.productId}}">{{prod.productName}}</a></h4>
+                                        <p class="price">
+                                            <span class="retail-price"><span>¥</span><span>{{prod.salesPrice}}</span></span><span
+                                                class="counter-price"><span>¥</span><span>{{prod.originalPrice}}</span></span>
+                                        </p>
+                                        <div>
+                                            <hr>
+                                            <p class="desc">{{prod.shoppingGuide.length >= 15 ? prod.shoppingGuide.slice(0,15) + '...' : prod.shoppingGuide}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-footer></div>
+</div>

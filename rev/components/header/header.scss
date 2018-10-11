@@ -1,0 +1,187 @@
+.header {
+  /*height: 240px;*/
+  .site-nav {
+    position: relative;
+    height: 36px;
+    line-height: 36px;
+    background-color: #333;
+    z-index: 4;
+    .site-nav-l {
+      float: left;
+    }
+    .site-nav-r {
+      float: right;
+    }
+    .site-nav-item {
+      float: left;
+      position: relative;
+      margin-left: 10px;
+      color: #ccc;
+      .site-nav-item-hd {
+        font-size: 12px;
+        cursor: pointer;
+        a {
+          display: inline-block;
+          color: #ccc;
+          i {
+            display: block;
+            img {
+              display: block;
+            }
+          }
+        }
+        &.pipe {
+          &:before {
+            content: '';
+            display: inline-block;
+            margin-right: 10px;
+            height: 16px;
+            border-left: 1px solid #5c5c5c;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+    .notice-list {
+      margin-left: 20px;
+      overflow: hidden;
+      height: 36px;
+      line-height: 36px;
+      background: url(/static/images/notice.gif?v=56df803aab) center left no-repeat;
+      .notice-item {
+        padding-left: 26px;
+        height: 36px;
+      }
+    }
+  }
+
+  .func-tab {
+    position: relative;
+    height: 204px;
+    background-color: #fff;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .2);
+    border-bottom: 1px solid #e8e8e8 \9;
+    .row {
+      height: 100%;
+      &:before {
+        content: " ";
+        display: table;
+      }
+    }
+    .logo {
+      position: absolute;
+      top: 50px;
+      left: 455px;
+      i {
+        background-image: url("/static/images/logo.png?v=40bed1aed6");
+        height: 70px;
+        width: 180px;
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: top;
+        font-size: 12px;
+        word-spacing: normal;
+        letter-spacing: normal;
+      }
+    }
+    .search {
+      position: relative;
+      margin-top: 75px;
+      float: right;
+      width: 272px;
+      height: 22px;
+      .search-input-button {
+        display: none;
+      }
+      .search-input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        display: block;
+        height: 22px;
+        line-height: 22px;
+        border: 0;
+        border-bottom: 1px solid #D8CEBC;
+        font-size: 12px;
+        width: 252px;
+        outline: 0;
+        overflow: hidden;
+        background: 0 0;
+      }
+      .search-default-keyword {
+        position: absolute;
+        top: 5px;
+        left: 11px;
+        color: #999;
+        display: block;
+        line-height: 1;
+        cursor: text;
+        touch-action: none;
+        pointer-events: none;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 230px;
+        text-overflow: ellipsis;
+      }
+      .search-button {
+        width: 20px;
+        cursor: pointer;
+        float: right;
+        i {
+          height: 20px;
+          width: 20px;
+          display: inline-block;
+          overflow: hidden;
+          vertical-align: top;
+          font-size: 12px;
+          word-spacing: normal;
+          letter-spacing: normal;
+        }
+      }
+      .suggest {
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #e8e8e8;
+        font-size: 14px;
+        outline: 0;
+        opacity: 0;
+        top: 21px;
+        width: 252px;
+        -webkit-transition: opacity .1s ease-out;
+        -moz-transition: opacity .1s ease-out;
+        -o-transition: opacity .1s ease-out;
+        transition: opacity .1s ease-out;
+        .suggest-item {
+          color: #999;
+          font-size: 13px;
+          padding: 2px 10px;
+        }
+      }
+    }
+  }
+
+  .menu {
+    line-height: 1;
+    font-weight: 700;
+    position: absolute;
+    height: 30px;
+    bottom: 21px;
+    width: 100%;
+    .menu-item {
+      float: left;
+      margin-top: 6px;
+      padding: 0 24px;
+      font-size: 14px;
+      a {
+        display: block;
+        padding-bottom: 6px;
+        color: #000;
+        &.hover, &:hover {
+          color: #b4a078;
+          border-bottom: 3px solid #b4a078;
+        }
+      }
+    }
+  }
+}

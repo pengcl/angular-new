@@ -1,0 +1,109 @@
+.footer {
+  .footer-bd {
+    padding-top: 60px;
+    padding-bottom: 34px;
+    background-color: #fff;
+    border-top: 1px solid #e8e8e8;
+    .pure-g {
+      margin: 0 100px;
+    }
+    .box {
+      padding: 0 37px;
+      text-align: center;
+      line-height: 1;
+      height: 204px;
+      h4 {
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 28px;
+        line-height: 1;
+      }
+      p {
+        text-align: left;
+        font-size: 13px;
+        line-height: 23px;
+        margin-bottom: 22px;
+      }
+      &.wap-admin {
+        border-left: 1px solid #e9e9e9;
+      }
+      .qr-code {
+        display: inline-block;
+        width: 104px;
+        height: 104px;
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
+  .footer-bt {
+    height: 204px;
+    padding-top: 37px;
+    background-color: #414141;
+    .row {
+      position: relative;
+    }
+    .site-ensure {
+      margin-bottom: 30px;
+      &:before {
+        content: " ";
+        display: table;
+      }
+      &:after {
+        content: ' ';
+        display: table;
+        clear: both;
+      }
+      .item {
+        float: left;
+        width: 33.333333%;
+        text-align: center;
+        color: #fff;
+        font-size: 18px;
+        line-height: 51px;
+        .item-box {
+          color: #fff;
+          font-size: 18px;
+          line-height: 51px;
+          display: inline-block;
+          vertical-align: middle;
+          i {
+            height: 51px;
+            width: 51px;
+            font-style: normal;
+            float: left;
+            margin-right: 17px;
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
+            font-size: 12px;
+            word-spacing: normal;
+            letter-spacing: normal;
+          }
+          span {
+            float: left;
+          }
+        }
+      }
+    }
+  }
+  hr {
+    height: 1px;
+    margin-bottom: 27px;
+    background-color: #4f4f4f;
+    border: 0;
+  }
+  .site-info {
+    text-align: center;
+    color: #999;
+    position: relative;
+    a {
+      color: #999;
+    }
+    b {
+      margin: auto 13px;
+    }
+  }
+}

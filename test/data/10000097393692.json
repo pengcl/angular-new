@@ -1,0 +1,50 @@
+{
+  "id": "10000097393692",
+  "name": "360°智能人体感应充电款LED小夜灯",
+  "desc": "【人来即亮 人走即灭】智能人体感应自动开关，360°旋转，磁吸底座，柔光不刺眼，居家必备起夜神器！",
+  "price": "99-238",
+  "sku": [
+    {
+      "pid": "10000097393236",
+      "ids": "PROD201809080194-1",
+      "name": "360°智能人体感应充电款LED小夜灯【单个装】",
+      "price": 99
+    },
+    {
+      "pid": "10000097393490",
+      "ids": "PROD201809080194-1,PROD201809080194-1",
+      "name": "360°智能人体感应充电款LED小夜灯【两个装】",
+      "price": 168
+    },
+    {
+      "pid": "10000097393692",
+      "ids": "PROD201809080194-1,PROD201809080194-1,PROD201809080194-1",
+      "name": "360°智能人体感应充电款LED小夜灯【家庭装】",
+      "price": 238
+    }
+  ],
+  "banners": [
+    "/images/1/banners/01.jpg",
+    "/images/1/banners/02.jpg",
+    "/images/1/banners/03.jpg",
+    "/images/1/banners/04.jpg",
+    "/images/1/banners/05.jpg"
+  ],
+  "details": [
+    "/images/1/details/01.jpg",
+    "/images/1/details/02.jpg",
+    "/images/1/details/03.jpg",
+    "/images/1/details/04.jpg",
+    "/images/1/details/05.jpg",
+    "/images/1/details/06.jpg",
+    "/images/1/details/07.jpg",
+    "/images/1/details/08.jpg",
+    "/images/1/details/09.jpg",
+    "/images/1/details/10.jpg",
+    "/images/1/details/11.jpg",
+    "/images/1/details/12.jpg",
+    "/images/1/details/13.jpg",
+    "/images/1/details/14.jpg",
+    "/images/1/details/15.jpg"
+  ]
+}

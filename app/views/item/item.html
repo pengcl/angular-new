@@ -1,0 +1,408 @@
+<div ng-header></div>
+<div class="row" style="padding-bottom: 50px">
+    <div class="crumbs">
+        <a href="/">首页</a>
+        <i class="icons arrow-right-hollow"></i>
+        <a href="/list?id={{prod.parentProductCategoryId}}">{{prod.parentProductCategoryName}}</a>
+        <i class="icons arrow-right-hollow"></i>
+        <a href="/list?id={{prod.parentProductCategoryId}}&subId={{positions.id}}">{{positions.name}}</a>
+        <i class="icons arrow-right-hollow"></i>
+        <span class="curr">{{prod.productName}}</span>
+    </div>
+    <div class="product-intro clearfix">
+        <div class="preview-wrap">
+            <div class="preview">
+                <img src="{{mainImg}}">
+            </div>
+            <div class="spec-items">
+                <ul class="lh">
+                    <li ng-click="setMainImg(img)" ng-repeat="img in prod.imgList | limitTo : 5">
+                        <a href="javascript:;" ng-class="{'img-hover' : img === mainImg}">
+                            <img src="{{img}}">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="itemInfo-wrap">
+            <div class="intro">
+                <div class="name">{{prod.productName}}</div>
+                <div class="desc">{{prod.shoppingGuide.length >= 80 ? prod.shoppingGuide.slice(0,80) + '...' : prod.shoppingGuide}}</div>
+                <div class="brand">{{prod.preContract}}</div>
+            </div>
+            <div class="intro-price">
+                <div class="form-div">
+                    <div class="field price">
+                        <span class="label">价格</span>
+                        <span class="sp">
+                            <span class="rmb">¥</span><span class="num">{{prod.salesPrice}}</span>
+                        </span>
+                        <span class="op"><span>¥</span><s><span>{{prod.originalPrice}}</span></s></span>
+                        <span class="duration">生产周期：<span>7</span>天</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-div">
+                    <div class="field">
+                        <span class="label">服务</span>
+                        <div ng-click="showTips()" class="policy-box">
+                            <div class="policy-item">
+                                <span>･&nbsp;</span><span>7天无忧退换货</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                            <div class="policy-item">
+                                <span>･&nbsp;</span><span>48小时快速退款</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                            <div class="policy-item"><span>･&nbsp;</span><span>全国货到付款包邮</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </div>
+                            <div class="policy-item last"><span>･&nbsp;</span><span>金山优选商品</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="choose-wrap">
+                <div class="param-picker" style="margin-top: 20px">
+                    <div class="spec-prop" ng-repeat="attr in prod.attributeList">
+                        <span class="type {{attr.name === '颜色' ? 'type-2' : 'type-1'}}">{{attr.name}}</span>
+                        <div class="cont">
+                            <ul class="tabs">
+                                <li ng-repeat="item in attr.list" class="tab-con">
+                                    <a ng-click="setAttr(attr,item)" href="javascript:;"
+                                       class="tab {{attr.name === '颜色' ? 'tab-pic' : 'tab-txt'}}"
+                                       ng-class="{'tab-sel':itemForm.attrs[$parent.$index].selected.id === item.id}">
+                                        <img ng-if="attr.name === '颜色'" ng-if="attr.name === '颜色'"
+                                             src="{{item.imgUrl}}">
+                                        <em></em>
+                                        <i class="w-icon-normal icon-normal-spec-arrow sel"></i>
+                                        <span class="txt">{{item.value}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="num-picker">
+                    <div class="number u-formctr f-left">
+                        <div class="name name-1">数量</div>
+                        <div class="field f-left">
+                            <div class="u-selnum ">
+                                <span ng-click="reduce()" class="less z-dis">
+                                    <i class="hx"></i>
+                                </span>
+                                <input type="text" ng-model="itemForm.totalQuantity">
+                                <span ng-click="add()" class="more">
+                                    <i class="hx"></i>
+                                    <i class="sx"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="prod.comboparam" ng-click="showCombo()" class="size-helper">
+                        <i class="w-icon-common icon-common-size"></i>
+                        <span style="margin-left:10px;">尺码助手</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-wrap" data-reactid=".2.1.0.1.4">
+                <a class="btn" href="/checkout">
+                    <span>立即购买</span>
+                </a>
+            </div>
+        </div>
+        <!--<div class="preview-wrap">
+            <div class="preview" id="preview">
+                <div class="jqzoom main-img">
+                    <img id="spec-img" width="350" height="350"
+                         src="{{mainImg}}">
+                </div>
+                <div class="spec-list">
+                    <a href="javascript:;" class="arrow-prev disabled"><i
+                            class="sprite-arrow-prev"></i></a>
+                    <a href="javascript:;" class="arrow-next disabled"><i
+                            class="sprite-arrow-next"></i></a>
+                    <div id="spec-list" class="spec-items">
+                        <ul class="lh">
+                            <li ng-click="setMainImg(img)" ng-repeat="img in prod.imgList" class=""
+                                ng-class="{'img-hover' : img === mainImg}">
+                                <img src="{{img}}"
+                                     width="50" height="50"></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="itemInfo-wrap">
+            <div class="sku-name">
+                {{prod.productName}}
+            </div>
+            <div class="news">
+                <div class="item" style="display: block;">{{prod.shoppingGuide}}</div>
+                <div class="brand item">{{prod.preContract}}</div>
+            </div>
+
+            <div class="summary summary-first">
+                <div class="summary-price-wrap">
+                    <div class="summary-price J-summary-price">
+                        <div class="dt">价 格</div>
+                        <div class="dd">
+                                <span class="p-price"><span>￥</span><span
+                                        class="price">{{prod.salesPrice}}</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="summary choose-wrap">
+
+                &lt;!&ndash;<div class="summary-stock">
+                    <div class="dt">收件人</div>
+                    <div class="dd">
+                        <input type="text" name="itemForm.receiverName" placeholder="姓名" ng-model="itemForm.receiverName"/>
+                        <input type="text" name="itemForm.receiverMobile" placeholder="手机" ng-model="itemForm.receiverMobile"/>
+                    </div>
+                </div>&ndash;&gt;
+
+                &lt;!&ndash;<div class="summary-stock">
+                    <div class="dt">配 送 至</div>
+                    <div class="dd">
+                        <div class="store clearfix">
+                            <div class="stock-address">
+                                <div class="ui-area-wrap ui-area-oversea-mode">
+                                    <div ng-click="showSelector()" class="ui-area-text-wrap">&lt;!&ndash;展示内容主体&ndash;&gt;
+                                        <div class="ui-area-text">{{itemForm.receiverCity || '请选择区域'}}</div>
+                                        &lt;!&ndash;显示被选中的地区&ndash;&gt;
+                                        <b></b>&lt;!&ndash;小箭头&ndash;&gt;
+                                    </div>
+                                    <div ng-address show="show" area="area"></div>
+                                </div>
+                            </div>
+                            <div id="store-prompt" class="store-prompt">
+                                <input type="text" name="itemForm.receiverRoom" placeholder="详细地址" ng-model="itemForm.receiverRoom"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>&ndash;&gt;
+
+                &lt;!&ndash;<div class="summary-line"></div>&ndash;&gt;
+                <div class="choose-attrs">
+                    <div ng-repeat="attr in prod.attributeList" ng-class="{'colors-stock':attr.name === '颜色'}"
+                         class="summary-stock choose-attr">
+                        <div class="dt">选择{{attr.name}}</div>
+                        <div class="dd">
+                            <div ng-repeat="item in attr.list" class="item" id="{{itemForm.productId}}"
+                                 ng-class="{'hover':itemForm.attrs[$parent.$index].selected.id === item.id}">
+                                <b></b>
+                                <a ng-click="setAttr(attr,item)"
+                                   href="javascript:;"><img ng-if="attr.name === '颜色'" src="{{item.imgUrl}}"
+                                                            width="40" height="40"><i>{{item.value}}</i></a>
+                            </div>
+                            <a ng-if="attr.name === '尺码' && prod.comboparam" ng-click="showCombo()" href="javascript:;" class="link">查看尺码对照</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="summary-line"></div>
+                <div class="choose-btns clearfix">
+                    <div class="choose-amount">
+                        <div class="wrap-input">
+                            <input class="text buy-num" value="{{itemForm.totalQuantity}}">
+                            <a class="btn-reduce disabled" ng-click="reduce()" href="javascript:;">-</a>
+                            <a class="btn-add" ng-click="add()" href="javascript:;">+</a>
+                        </div>
+                    </div>
+
+                    <a href="/checkout" class="btn-lg">立即购买</a>
+                </div>
+                <div class="summary-tips">
+                    <div class="dt">温馨提示</div>
+                    <div ng-click="showTips()" class="dd">
+                        <ol class="tips-list clearfix">
+                            <li class="local-txt">·货到付款</li>
+                            <li class="local-txt">·全国包邮</li>
+                            <li class="local-txt">·7天无忧退货</li>
+                            <li class="local-txt">·超时赔偿</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+
+    <div class="pure-g">
+        <div class="recommend pure-u-1-4">
+            <div class="sidebar">
+                <div class="hd">
+                    <div class="title">热卖推荐</div>
+                </div>
+                <div class="bd">
+                    <ul class="product-list">
+                        <li class="product-item"
+                            ng-repeat="item in prods | limitTo:6">
+                            <div class="item-img">
+                                <a href="/item/{{item.productId}}"
+                                   target="_blank">
+                                    <img title="{{item.productName}}"
+                                         ng-src="{{item.mainImageUrl}}">
+                                </a>
+                            </div>
+                            <div class="item-name">
+                                <a href="/item/{{item.productId}}" target="_blank"><span ng-bind="item.productName"></span></a>
+                            </div>
+                            <div class="item-amount">
+                                <div class="item-amount-div">
+                                    <div class="payprice">
+                                        <em class="color-cf0">¥</em>
+                                        <em class="paypricespan"
+                                            ng-bind="item.salesPrice"></em>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right-box pure-u-3-4">
+            <div class="details-tabs" style="margin-left: 40px">
+                <div id="productDetailTabs" class="cf-tab">
+                    <div class="cf-tab-nav">
+                        <ul class="clearfix" style="padding-left:15px;">
+                            <li class="tab-nav" ng-class="{'active' : contentIndex === 0}" ng-click="getContent(0)"><a
+                                    href="javascript:;">商品详情</a></li>
+                            <li class="tab-nav" ng-class="{'active' : contentIndex === 1}" ng-click="getContent(1)"><a
+                                    href="javascript:;">服务政策</a></li>
+                            <li class="tab-nav" ng-class="{'active' : contentIndex === 2}" ng-click="getContent(2)"><a
+                                    href="javascript:;">咨询与售后</a></li>
+                        </ul>
+                    </div>
+                    <div class="cf-tab-container">
+                        <ul class="cf-content">
+                            <li class="tab-content prod-detail" ng-show="contentIndex === 0">
+                                <!-- 商品详情广告-->
+                                <div class="img-box">
+                                    <img src="/static/images/product/detail-top.jpg">
+                                </div>
+                                <div class="" ng-bind-html="prod.detail"></div>
+                                <div class="img-box">
+                                    <img src="/static/images/product/detail-bottom.jpg">
+                                </div>
+                            </li>
+                            <li class="tab-content" ng-show="contentIndex === 1">
+                                <ul class="qa">
+                                    <li class="issue">
+                                        <p class="question">1.支持7天无忧退换货</p>
+                                        <p class="answer">自收到商品之日起7天内，可申请无忧退换货服务（食品、贴身衣物、积分兑换等特殊商品除外）</p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">2.48小时快速退款</p>
+                                        <p class="answer">收到退货包裹并确认无误后，将在48小时内办理退款，有一对一客服与您联系，洽商退款事宜。</p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">3.全国货到付款包邮</p>
+                                        <p class="answer">除台湾、香港、澳门以及其他快递货到付款无法配送的地区外，本商城均支持全国包邮、开包验货、满意后再付款，完全“零”风险购物！</p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">4.金山优选商品</p>
+                                        <p class="answer">本商城均由金山优选层层筛选好物，优选原材料和供应商，把控源头，筛选性价比高的高品质商品。</p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="tab-content" ng-show="contentIndex === 2">
+                                <ul class="qa">
+                                    <li class="issue">
+                                        <p class="question">金山优选的商品是正品吗？</p>
+                                        <p class="answer">
+                                            金山优选秉承一贯的严谨态度，对商品的供应商、源材料、工艺都严格把关，通过先验货，后付款的方式，为您的生活甄选最具性价比的高品质的商品，您可以放心选购。</p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">购物流程怎么样？</p>
+                                        <p class="answer">
+                                            您可以通过金山优选的商城页面，挑选心仪的商品，并填写收件信息提交订单，金山优选为您挑选最好的供应商为您准备商品，您就可以安心在家等快递将商品送到您手中。</p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">我的订单如何查询？</p>
+                                        <p class="answer">您可以在金山优选的商城页面右上角“我的订单”查询您的订单情况。</p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">我的金山优选订单大概多久发货？</p>
+                                        <p class="answer">
+                                            订单发货的时间为您下单后的48小时内，金山优选为您挑选最好的供应商为您准备好商品并交给签约的优质快递为您配送。若为预售商品，详情请关注预售商品的发货说明，请您耐心等候。</p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">我的金山优选订单如何查询物流进度？</p>
+                                        <p class="answer">
+                                            发货后将会通过短信发送“快递单号”至您收件人手机号码中，您可通过快递查询网站查询物流轨迹信息。亦可登陆“我的订单”里面查询。</p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">商品不满意，想退货怎么办？</p>
+                                        <p class="answer">
+                                            <b>金山优选为您提供7天换货尊享服务。</b><br>
+                                            <b>未签收：</b>若你能验收时对商品不满意，无需支付任何费用，将商品拒签，快递员带回即可，无需对订单做任何操作。<br>
+                                            <b>已签收：</b>若您已签收商品，需办理退货，请您按寄送回发件地址，收到退货包裹并确认无误后，将在48小时内办理退款，有一对一客服与您联系，洽商退款事宜。
+                                        </p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">客服的联系方式是什么？</p>
+                                        <p class="answer">金山优选客服电话：020-85599918</p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">商品发货后，退换货与拒签收取费用吗？</p>
+                                        <p class="answer">
+                                            <b>未签收退换货：</b>直接拒签，快递员带回即可，无需支付任何费用。<br>
+                                            <b>已签收退换货：</b>非商品质量问题退换货，运费由客户自行承担。商品质量问题退换货，由商家承担，客户先垫付物流费（不接受到付），物流费与货款一并退还。
+                                        </p>
+                                    </li>
+                                    <li class="issue">
+                                        <p class="question">价格说明</p>
+                                        <p class="answer">
+                                            <b>划线价格：</b>指商品专柜价、吊牌价、正品零售价、厂家指导价或该商品曾经展示的价格，并非原价，仅供参考。<br>
+                                            <b>未划线价格：</b>指商品的实时价格，不因表述的差异改变性质。具体成交价格根据商品参加活动或者会员试用优惠券、积分等发生变化，最终以订单结算价格为准。
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-footer></div>
+
+<div ng-show="comboShow" class="dialog-container">
+    <div class="mask"></div>
+    <div class="overlay">
+        <div class="overlay-container">
+            <span ng-click="showCombo()" class="close"></span>
+            <div class="content-hd">
+                尺码参考表
+            </div>
+            <div class="content-bd">
+                <div class="img-box" ng-bind-html="prod.comboparam"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="tipsShow" class="dialog-container">
+    <div class="mask"></div>
+    <div class="overlay">
+        <div class="overlay-container">
+            <span ng-click="showTips()" class="close"></span>
+            <div class="content-hd">服务政策</div>
+            <div class="content-bd">
+                <p class="item-tit">1.支持7天无忧退换货</p>
+                <p class="item-txt">自收到商品之日起7天内，可申请无忧退换货服务（食品、贴身衣物、积分兑换等特殊商品除外）</p>
+                <p class="item-tit">2.48小时快速退款</p>
+                <p class="item-txt">收到退货包裹并确认无误后，将在48小时内办理退款，有一对一客服与您联系，洽商退款事宜。</p>
+                <p class="item-tit">3.全国货到付款包邮</p>
+                <p class="item-txt">除台湾、香港、澳门以及其他快递货到付款无法配送的地区外，本商城均支持全国包邮、开包验货、满意后再付款，完全“零”风险购物！</p>
+                <p class="item-tit">4.金山优选商品</p>
+                <p class="item-txt">本商城均由金山优选层层筛选好物，优选原材料和供应商，把控源头，筛选性价比高的高品质商品。</p>
+            </div>
+        </div>
+    </div>
+</div>

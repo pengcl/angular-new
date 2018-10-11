@@ -1,0 +1,212 @@
+.login {
+  .login-bd {
+    min-height: 600px;
+    background-image: url("/static/images/login-bg.jpg?v=a9c435495c");
+    background-position: center;
+    background-repeat: no-repeat;
+    .loginBox {
+      margin-top: 83px;
+      margin-left: 703px;
+      width: 386px;
+      background: #fff;
+      height: auto!important;
+      border: 1px solid #F5F3EF;
+      position: relative;
+      line-height: 1.5;
+      color: #333;
+      box-sizing: unset;
+      * {
+        box-sizing: unset;
+      }
+      .loginBox-hd {
+        position: absolute;
+        overflow: hidden;
+        padding: 30px 0 10px;
+        left: 45px;
+        span {
+          display: block;
+          font-size: 18px;
+          color: #333;
+          letter-spacing: 0;
+          line-height: 18px;
+          width: 306px;
+          overflow: hidden;
+        }
+      }
+      .mobileLoginWrap {
+        padding: 58px 40px 83px;
+        position: relative;
+        overflow: hidden;
+        background: #fff;
+        background: none;
+        border-radius: 0;
+        .cnt-box {
+          position: relative;
+          background: #fff;
+          background: none;
+          border-radius: 0;
+          overflow: visible;
+          .m-cnt {
+            margin: 0 auto;
+            padding: 0;
+            padding-top: 10px;
+            background-color: #fff;
+            .u-tab {
+              margin: 0 auto;
+              padding: 0 0 20px 0;
+              padding-bottom: 6px;
+              &:after {
+                display: block;
+                clear: both;
+                visibility: hidden;
+                height: 0;
+                overflow: hidden;
+                content: ".";
+              }
+              a {
+                float: right;
+                padding: 0 0 0 34px;
+              }
+            }
+            .inputbox {
+              z-index: 19;
+              position: relative;
+              margin-bottom: 0px;
+              background: #fff;
+              font-size: 12px;
+              height: 36px;
+              border: 1px solid #e8e8e8;
+              line-height: 36px;
+              border-radius: 2px;
+              box-sizing: unset;
+              &.error {
+                border: 1px solid #fa6060;
+              }
+            }
+            .u-logo {
+              float: left;
+              width: 29px;
+              text-align: center;
+              padding: 7px 0 7px 7px;
+              height: 24px;
+              box-sizing: unset;
+              div {
+                display: inline-block;
+                width: 21px;
+                height: 24px;
+                margin-top: 0px;
+                padding-right: 7px;
+                border-right: 1px solid #e8e8e8;
+                background: url(/static/images/icons/phone.png?v=1c11999c07) 4px 2px no-repeat;
+                box-sizing: unset;
+              }
+            }
+            .u-input {
+              position: relative;
+              float: left;
+              height: 100%;
+              input {
+                color: #333;
+                border: 0;
+                background: #fff;
+                height: 36px;
+                line-height: 36px;
+                padding: 0 0 0 8px;
+                width: 214px;
+                font-size: 14px;
+                font-weight: normal;
+              }
+            }
+            .active-code {
+              margin-top: 15px;
+              &:after {
+                display: block;
+                clear: both;
+                visibility: hidden;
+                height: 0;
+                overflow: hidden;
+                content: ".";
+              }
+              .inputbox {
+                width: 209px !important;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                z-index: 18;
+                display: inline-block;
+                vertical-align: top;
+                input {
+                  width: 150px;
+                }
+              }
+              .active-btn {
+                display: inline-block;
+                margin-left: 0;
+                vertical-align: top;
+                a {
+                  display: block;
+                  text-align: center;
+                  font-size: 14px;
+                  border: 1px solid #e8e8e8;
+                  border-left: 0;
+                  width: 93px;
+                  height: 36px;
+                  line-height: 36px;
+                  background-color: #eee;
+                  color: #333;
+                  box-sizing: unset;
+                  &.disabled {
+                    color: #999;
+                  }
+                }
+              }
+            }
+            .m-error {
+              top: -14px;
+              left: -1px;
+              color: #fff;
+              border-radius: 2px;
+              font-size: 0;
+              margin-bottom: -8px;
+              margin-top: 10px;
+              div {
+                display: inline-block;
+                overflow: hidden;
+              }
+              .error-icon {
+                height: 20px;
+                width: 20px;
+                margin-right: 10px;
+                background: url(/static/images/icons/error.png?v=e4c2f3afb8) 0 0px no-repeat;
+              }
+              .error-txt {
+                width: 250px;
+                margin-top: -2px;
+                color: #d4282d;
+                font-size: 12px;
+                line-height: 20px;
+                vertical-align: top;
+                word-break: break-all;
+              }
+            }
+            .loginBtn {
+              margin-top: 40px;
+              margin-bottom: 11px;
+              a {
+                display: block;
+                width: 100%;
+                height: 48px;
+                cursor: pointer;
+                text-align: center;
+                color: #fff;
+                background: #b4a078;
+                font-size: 18px;
+                line-height: 48px;
+                border-radius: 2px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

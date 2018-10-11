@@ -1,0 +1,51 @@
+.icons {
+  background-image: url("/static/images/icons/icons-sprite.png");
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  font-size: 12px;
+  word-spacing: normal;
+  letter-spacing: normal;
+}
+
+.arrow-right-hollow {
+  background-position: 0 -1055px;
+  height: 11px;
+  width: 5px;
+}
+
+.arrow-down-gray {
+  background-position: 0 -655px;
+  height: 5px;
+  width: 10px;
+}
+
+.arrow-up-gold {
+  background-position: 0 -1112px;
+  height: 5px;
+  width: 10px;
+}
+
+.arrow-up-gray {
+  background-position: 0 -1143px;
+  height: 5px;
+  width: 10px;
+}
+
+.arrow-down-gold {
+  background-position: 0 -601px;
+  height: 5px;
+  width: 10px;
+}
+
+.arrow-down-gray-l {
+  background-position: 0 -633px;
+  height: 12px;
+  width: 9px;
+}
+
+.arrow-down-gold-l {
+  background-position: 0 -579px;
+  height: 12px;
+  width: 9px;
+}

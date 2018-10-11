@@ -1,0 +1,79 @@
+{
+  "id": "10000097394519",
+  "name": "2018新款专业肩颈枕",
+  "desc": "脖子不疼 腰椎放松，舒适睡眠！颈友官方正品，货到付款，全国包邮!",
+  "price": "138-298",
+  "sku": [
+    {
+      "pid": "10000097394745",
+      "ids": "PROD201809080192-1,PROD201809080192-1,PROD201809080193-1",
+      "name": "【不加热组合套装】肩颈枕（不加热款）+枕套+腰椎枕",
+      "price": 268
+    },
+    {
+      "pid": "10000097394519",
+      "ids": "PROD201809080190-1,PROD201809080192-1,PROD201809080193-1",
+      "name": "【热敷组合套装】肩颈枕（热敷款）+枕套+腰椎枕",
+      "price": 298
+    },
+    {
+      "pid": "10000097394391",
+      "ids": "PROD201809080193-1",
+      "name": "【不加热】——腰椎枕",
+      "price": 138
+    },
+    {
+      "pid": "10000097394177",
+      "ids": "PROD201809080192-1,PROD201809080192-1",
+      "name": "【不加热】——肩颈枕+枕套",
+      "price": 168
+    },
+    {
+      "pid": "10000097393947",
+      "ids": "PROD201809080190-1,PROD201809080192-1",
+      "name": "【热敷款】——肩颈枕+枕套",
+      "price": 198
+    }
+  ],
+  "banners": [
+    "/images/2/banners/01.jpg",
+    "/images/2/banners/02.jpg",
+    "/images/2/banners/03.jpg",
+    "/images/2/banners/04.jpg",
+    "/images/2/banners/05.jpg"
+  ],
+  "details": [
+    "/images/2/details/01.jpg",
+    "/images/2/details/02.jpg",
+    "/images/2/details/03.jpg",
+    "/images/2/details/04.jpg",
+    "/images/2/details/05.jpg",
+    "/images/2/details/06.jpg",
+    "/images/2/details/07.jpg",
+    "/images/2/details/08.jpg",
+    "/images/2/details/09.jpg",
+    "/images/2/details/10.jpg",
+    "/images/2/details/11.jpg",
+    "/images/2/details/12.jpg",
+    "/images/2/details/13.jpg",
+    "/images/2/details/14.jpg",
+    "/images/2/details/15.jpg",
+    "/images/2/details/16.jpg",
+    "/images/2/details/17.jpg",
+    "/images/2/details/18.jpg",
+    "/images/2/details/19.jpg",
+    "/images/2/details/20.jpg",
+    "/images/2/details/21.jpg",
+    "/images/2/details/22.jpg",
+    "/images/2/details/23.jpg",
+    "/images/2/details/24.jpg",
+    "/images/2/details/25.jpg",
+    "/images/2/details/26.jpg",
+    "/images/2/details/27.jpg",
+    "/images/2/details/28.jpg",
+    "/images/2/details/29.jpg",
+    "/images/2/details/30.jpg",
+    "/images/2/details/31.jpg",
+    "/images/2/details/32.jpg"
+  ]
+}
