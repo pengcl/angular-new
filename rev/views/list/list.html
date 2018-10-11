@@ -22,22 +22,22 @@
                             <a ng-repeat="item in catalog.childList" href="./list?id={{id}}&subId={{item.id}}" class="category-item {{subId == item.id ? 'active' : ''}}">{{item.name}}</a>
                         </div>
                     </div>
-                    <!--<div class="sorts">
+                    <div class="sorts">
                         <span class="name">排序：</span>
                         <a href="javascript:;" class="sort sort-default active">默认</a>
-                        <a href="javascript:;" class="sort sort-price">
+                        <a ng-click="getData(filters,0)" href="javascript:;" class="sort sort-price">
                             <span>价格</span>
                             <div class="icon">
-                                <i class="icons arrow-up-gray"></i>
-                                <i class="icons arrow-down-gray"></i>
+                                <i class="icons" ng-class="{'arrow-up-gold' : filters[0] === 'ASC','arrow-up-gray' : filters[0] === '' || filters[0] === 'DESC'}"></i>
+                                <i class="icons" ng-class="{'arrow-down-gold' : filters[0] === 'DESC','arrow-down-gray' : filters[0] === '' || filters[0] === 'ASC'}"></i>
                             </div>
                         </a>
-                        <a href="javascript:;" class="sort sort-time">
+                        <a ng-click="getData(filters,1)" href="javascript:;" class="sort sort-time">
                             <span>上架时间</span>
-                            <i class="icons arrow-down-gray-l"></i>
+                            <i class="icons arrow-down-gray-l" ng-class="{'arrow-down-gold-l' : filters[1] === 'ASC','arrow-down-gray-l' : filters[1] === '','arrow-down-gray-l' : filters[1] === 'DESC'}"></i>
                         </a>
                         <span></span>
-                    </div>-->
+                    </div>
                 </div>
 
                 <div class="content">

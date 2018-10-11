@@ -207,8 +207,8 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="arrows leftArrow" style="display: block;"></div>
-                                <div class="arrows rightArrow" style="display: block;"></div>
+                                <div ng-click="prev()" class="arrows leftArrow" ng-class="{'disabled':page === 1}" style="display: block;"></div>
+                                <div ng-click="next()" class="arrows rightArrow" ng-class="{'disabled':page === 3}" style="display: block;"></div>
                             </div>
                         </div>
                     </div>

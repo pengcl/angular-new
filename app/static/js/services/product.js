@@ -3,9 +3,9 @@
 appServices.factory('ProductSvc', ['$q', '$http', function ($q, $http) {
     var service = {};
 
-    service.get = function (id, page) {
+    service.get = function (id, page, filters) {
         var d = $q.defer();
-        $http.get('/api/productinf/getProductList.ht?productCategoryId=' + (id ? id : '') + '&page=' + (page ? page : 1)).success(function (data) {
+        $http.get('/api/productinf/getProductList.ht?productCategoryId=' + (id ? id : '') + '&page=' + (page ? page : 1) + '&orderByPrice=' + (filters ? filters[0] : '') + '&orderByTime=' + (filters ? filters[1] : '')).success(function (data) {
             return d.resolve(data);
         }).error(function (error) {
             d.reject(error);

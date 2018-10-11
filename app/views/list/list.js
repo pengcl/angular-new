@@ -42,6 +42,8 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
     LogSvc.log('listLoad', $rootScope.activeTag, $rootScope.gh).then();
 
+    $scope.filters = ['', ''];
+
     ProductSvc.getCatalogs($scope.id).then(function success(res) {
         $scope.catalog = res;
         if ($scope.subId) {
@@ -51,11 +53,25 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         }
     });
 
-    ProductSvc.get($scope.subId || $scope.id, $scope.page).then(function success(res) {
+    ProductSvc.get($scope.subId || $scope.id, $scope.page, $scope.filters).then(function success(res) {
         $scope.prods = res.list;
         $scope.totalPages = res.totalPage;
         $scope.isLoading = false;
     });
+
+    $scope.getData = function (filters, index) {
+        var preIndex = index === 0 ? 1 : 0;
+        $scope.filters[preIndex] = '';
+        $scope.filters[index] = filters[index] === 'ASC' || filters[index] === '' ? 'DESC' : 'ASC';
+        console.log(preIndex, $scope.filters);
+        ProductSvc.get($scope.subId || $scope.id, $scope.page, $scope.filters).then(function success(res) {
+            $scope.prods = res.list;
+            $scope.totalPages = res.totalPage;
+            $scope.isLoading = false;
+            $scope.finished = false;
+            $scope.page = 1;
+        });
+    };
 
     $(window).scroll(function (e) {
         var wH = $window.innerHeight, wT = $window.scrollY, sH = document.body.scrollHeight;
@@ -63,7 +79,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             if ($scope.page < $scope.totalPages) {
                 $scope.page = $scope.page + 1;
                 $scope.isLoading = true;
-                ProductSvc.get($scope.subId || $scope.id, $scope.page).then(function success(res) {
+                ProductSvc.get($scope.subId || $scope.id, $scope.page, $scope.filters).then(function success(res) {
                     $scope.prods = $scope.prods.concat(res.list);
                     $scope.isLoading = false;
                 });
