@@ -25,7 +25,15 @@ app.config(['$routeProvider', '$locationProvider',
     //For sport ie7
     $sceProvider.enabled(false);
 }]).controller('appController', [function () {
-}]).run(['$rootScope', '$location', function ($rootScope, $location) {
+}]).run(['$rootScope', '$location', '$cookieStore', function ($rootScope, $location, $cookieStore) {
     $rootScope.activeTag = 'js_pc';
-    $rootScope.gh = $location.search().gh ? $location.search().gh : 'pc';
+    var gh = 'pc';
+    gh = $cookieStore.get('gh') ? $cookieStore.get('gh') : gh;
+    gh = $location.search().gh ? $location.search().gh : gh;
+    $cookieStore.put('gh', gh);
+    $rootScope.gh = gh;
+
+    $rootScope.$on('$locationChangeStart', function () {
+        _hmt.push(['_trackPageview', $location.path()]);
+    })
 }]);

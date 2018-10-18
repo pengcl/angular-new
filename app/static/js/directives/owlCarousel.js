@@ -3,7 +3,7 @@
 appDirectives.directive("owlCarousel", ['$http', '$compile', function ($http, $compile) {
     return {
         restrict: 'C',
-        template: '<a class="carousel-item item" ng-repeat="item in imgUrls"><img src="{{item}}"></a>',
+        template: '<a class="carousel-item item" ng-repeat="item in imgUrls" href="{{item.url}}"><img src="{{item.img}}"></a>',
         scope: {
             imgUrls: '='
         },
@@ -21,7 +21,7 @@ appDirectives.directive("owlCarousel", ['$http', '$compile', function ($http, $c
                     paginationSpeed: 400,
                     autoplayHoverPause: true,
                     stopOnHover: true,
-                    autoPlay: 3000,
+                    autoPlay: 5000,
                     margin: 0,
                     loop: true,
                     items: 1,

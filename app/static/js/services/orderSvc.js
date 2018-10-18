@@ -43,6 +43,16 @@ appServices.factory("OrderSvc", ['$http', '$q', function ($http, $q) {
         return d.promise;
     };
 
+    service.orderOpt = function (orderNo, action) {
+        var d = $q.defer();
+        $http.get('/api/order/orderOperation.ht?orderNo=' + orderNo + '&action=' + action).success(function (data) {
+            return d.resolve(data);
+        }).error(function (error) {
+            d.reject(error);
+        });
+        return d.promise;
+    };
+
     service.exchange = function (memberId, productId, productFlowPriceId) {
         var d = $q.defer();
         $http.get('/api/order/rechargeGiveFlow.ht?memberId=' + memberId + '&productId=' + productId + '&productFlowPriceId=' + productFlowPriceId + '&channelCode=?&category=').success(function (data) {

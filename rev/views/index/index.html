@@ -52,7 +52,7 @@
                             <a href="/list?id={{catalog.id}}">
                                 <h3 class="title">{{catalog.name}}</h3>
                                 <small ng-show="catalog.id == '10000097480426'" class="sub-title">华歌尔、CK等制造商直供</small>
-                                <small ng-show="catalog.id == '10000097480440'" class="sub-title">LACOSTE制造商直供</small>
+                                <small ng-show="catalog.id == '10000097480440'" class="sub-title">GEOX制造商直供</small>
                                 <small ng-show="catalog.id == '10000098490415'" class="sub-title">阿玛尼制造商直供</small>
                             </a>
                         </div>
@@ -74,8 +74,8 @@
                             <li ng-repeat="prod in catalog.products | limitTo: 8" class="item">
                                 <div class="product">
                                     <div class="p-hd">
-                                        <a href="/item/{{prod.productId}}" target="_blank">
-                                            <img lazy-src="{{prod.mainImageUrl}}"/>
+                                        <a href="/item?id={{prod.productId}}" target="_blank">
+                                            <img lazy-src="{{prod.filePath + prod.fileName + '_small' + prod.extName}}"/>
                                         </a>
                                         <span class="tag" ng-bind="prod.productCategoryName | curCate"></span>
                                     </div>
@@ -83,7 +83,7 @@
                                         <div class="tags">
                                             <span class="tag">{{prod.preContract}}</span>
                                         </div>
-                                        <h4 class="name"><a href="/item/{{prod.productId}}">{{prod.productName}}</a></h4>
+                                        <h4 class="name"><a href="/item?id={{prod.productId}}">{{prod.productName}}</a></h4>
                                         <p class="price">
                                             <span class="retail-price"><span>¥</span><span>{{prod.salesPrice}}</span></span><span
                                                 class="counter-price"><span>¥</span><span>{{prod.originalPrice}}</span></span>

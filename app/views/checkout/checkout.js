@@ -18,6 +18,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         code: '',
         receiverCity: '',
         receiverRoom: '',
+        feedback: '',
         condition: '',
         payType: 1,
         buyerMemo: '',
@@ -41,13 +42,17 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     } else {
         $scope.itemForm.productId = $scope.prod.productId;
         $scope.itemForm.totalQuantity = $scope.prod.totalQuantity;
-        $scope.prod.attrs.forEach(function (item) {
-            if ($scope.itemForm.condition) {
-                $scope.itemForm.condition = $scope.itemForm.condition + ';' + item.id + ':' + item.selected.id;
-            } else {
-                $scope.itemForm.condition = item.id + ':' + item.selected.id;
-            }
-        });
+
+        if ($scope.prod.attrs) {
+            $scope.attrs = JSON.parse($scope.prod.attrs);
+            $scope.attrs.forEach(function (item) {
+                if ($scope.itemForm.condition) {
+                    $scope.itemForm.condition = $scope.itemForm.condition + ';' + item.id + ':' + item.selected.id;
+                } else {
+                    $scope.itemForm.condition = item.id + ':' + item.selected.id;
+                }
+            });
+        }
     }
 
     $scope.address = $cookieStore.get('address') || {
@@ -126,6 +131,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             $scope.itemForm.receiverName = $scope.address.name;
             $scope.itemForm.receiverMobile = $scope.address.mobile;
             $scope.itemForm.code = $scope.address.code;
+            $scope.itemForm.feedback = $scope.address.feedback;
             $scope.invoice.name = $scope.address.name;
             $cookieStore.put('address', $scope.address);
         }

@@ -107,15 +107,20 @@
                                                 <div class="packageItem">
                                                     <div class="good">
                                                         <div ng-repeat="prod in order.itemList" class="good-item">
-                                                            <a class="link" href="javascript:;" target="_blank">
+                                                            <a class="link" href="/item?id={{prod.productId}}"
+                                                               target="_blank">
                                                                 <img src="{{prod.productImg}}"
                                                                      width="100px" height="100px">
                                                             </a>
                                                             <div class="info">
                                                                 <a class="f-fz14"
-                                                                   href="/order/getDetail?orderId=62724701"
+                                                                   href="/item?id={{prod.productId}}"
                                                                    target="_blank">{{prod.productName}}</a>
-                                                                <p class="feedback">{{order.traderemark}}</p>
+                                                                <p class="feedback" style="margin: 5px 0;">
+                                                                    {{order.traderemark}}</p>
+                                                                <p class="line" style="margin-top: 5px;color: #999">
+                                                                    <span class="spec">{{prod.skuValue}}</span>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -127,14 +132,28 @@
                                                             <!--<a href="javascript:;" class="w-link">追踪物流</a>-->
                                                         </div>
                                                     </div>
+
+                                                    <!-- 0-待支付、1-备货中、2-已发货、3-退货中、4-退款中、5-待确认、6-已取消、7-已完成、8-已退货、9-已退款、10-取消订单申请 -->
                                                     <div class="status">
                                                         <div class="cell">
                                                             <div>
+                                                                <span ng-if="order.orderStatus === 0">待支付</span>
                                                                 <span ng-if="order.orderStatus === 1">备货中</span>
                                                                 <span ng-if="order.orderStatus === 2">已发货</span>
                                                                 <span ng-if="order.orderStatus === 3">退货中</span>
+                                                                <span ng-if="order.orderStatus === 4">退款中</span>
+                                                                <span ng-if="order.orderStatus === 5">待确认</span>
                                                                 <span ng-if="order.orderStatus === 6">已取消</span>
                                                                 <span ng-if="order.orderStatus === 7">已完成</span>
+                                                                <span ng-if="order.orderStatus === 8">已退货</span>
+                                                                <span ng-if="order.orderStatus === 9">已退款</span>
+                                                                <span ng-if="order.orderStatus === 10">取消订单申请</span>
+
+                                                                <a ng-click="showMsg({content:'您确认需要取消订单吗！'},order,'cancel')"
+                                                                   ng-if="order.orderStatus === 1 || order.orderStatus === 5"
+                                                                   href="javascript:;">取消订单</a>
+                                                                <a ng-click="showMsg({content:'您确认需要申请退货吗！'},order,'return')"
+                                                                   ng-if="order.orderStatus === 7" href="javascript:;">申请退货</a>
                                                             </div>
                                                             <!--<div>
                                                                 <a href="javascript:;"
@@ -188,7 +207,7 @@
                                         <li ng-repeat="prod in recommends | limitTo: 12" class="item">
                                             <div class="product">
                                                 <div class="p-hd">
-                                                    <a href="/item/{{prod.productId}}">
+                                                    <a href="/item?id={{prod.productId}}">
                                                         <img ng-src="{{prod.mainImageUrl}}"/>
                                                     </a>
                                                 </div>
@@ -196,7 +215,7 @@
                                                     <div class="tags">
                                                         <span class="tag">特价</span>
                                                     </div>
-                                                    <h4 class="name"><a href="/item/{{prod.productId}}">{{prod.productName}}</a>
+                                                    <h4 class="name"><a href="/item?id={{prod.productId}}">{{prod.productName}}</a>
                                                     </h4>
                                                     <p class="price">
                                                         <span class="retail-price"><span>¥</span><span>{{prod.salesPrice}}</span></span><span
@@ -207,8 +226,10 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div ng-click="prev()" class="arrows leftArrow" ng-class="{'disabled':page === 1}" style="display: block;"></div>
-                                <div ng-click="next()" class="arrows rightArrow" ng-class="{'disabled':page === 3}" style="display: block;"></div>
+                                <div ng-click="prev()" class="arrows leftArrow" ng-class="{'disabled':page === 1}"
+                                     style="display: block;"></div>
+                                <div ng-click="next()" class="arrows rightArrow" ng-class="{'disabled':page === 3}"
+                                     style="display: block;"></div>
                             </div>
                         </div>
                     </div>
@@ -217,4 +238,38 @@
         </div>
     </div>
     <div ng-footer></div>
+</div>
+
+<div ng-show="msg.show" class="dialog-container">
+    <div class="mask"></div>
+    <div class="overlay">
+        <div class="overlay-container" style="padding-bottom: 0;width: 700px">
+            <span ng-click="msg.show = false" class="close"></span>
+            <div class="content-hd">
+                {{msg.title}}
+            </div>
+            <div class="content-bd">
+                <p style="font-size: 14px">{{msg.content}}</p>
+            </div>
+            <div class="content-ft">
+                <a ng-click="msg.show = false" class="w-button w-button-default" href="javascript:;">{{msg.cancel}}</a>
+                <a ng-click="msg.show = false;msg.fn()" class="w-button w-button-primary" href="javascript:;">{{msg.confirm}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="sysMsg.show" class="dialog-container">
+    <div class="mask"></div>
+    <div class="overlay">
+        <div class="overlay-container" style="padding-bottom: 0;width: 700px">
+            <span ng-click="sysMsg.show = false" class="close"></span>
+            <div class="content-bd">
+                <p style="font-size: 14px">{{sysMsg.content}}</p>
+            </div>
+            <div class="content-ft">
+                <a ng-click="sysMsg.show = false" class="w-button w-button-primary" href="javascript:;">我知道了</a>
+            </div>
+        </div>
+    </div>
 </div>

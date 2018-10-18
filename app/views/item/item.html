@@ -27,7 +27,9 @@
         <div class="itemInfo-wrap">
             <div class="intro">
                 <div class="name">{{prod.productName}}</div>
-                <div class="desc">{{prod.shoppingGuide.length >= 80 ? prod.shoppingGuide.slice(0,80) + '...' : prod.shoppingGuide}}</div>
+                <div class="desc">{{prod.shoppingGuide.length >= 80 ? prod.shoppingGuide.slice(0,80) + '...' :
+                    prod.shoppingGuide}}
+                </div>
                 <div class="brand">{{prod.preContract}}</div>
             </div>
             <div class="intro-price">
@@ -38,7 +40,8 @@
                             <span class="rmb">¥</span><span class="num">{{prod.salesPrice}}</span>
                         </span>
                         <span class="op"><span>¥</span><s><span>{{prod.originalPrice}}</span></s></span>
-                        <span class="duration">生产周期：<span>7</span>天</span>
+                        <span ng-show="prod.parentProductCategoryId == '10000097480440'"
+                              class="duration">生产周期：<span>7</span>天</span>
                     </div>
                 </div>
                 <hr>
@@ -67,11 +70,12 @@
                         <div class="cont">
                             <ul class="tabs">
                                 <li ng-repeat="item in attr.list" class="tab-con">
-                                    <a ng-click="setAttr(attr,item)" href="javascript:;"
+                                    <a ng-click="setAttr(attr,item,sku.indexOf(item.id) === -1 && attr.name !== '颜色')"
+                                       href="javascript:;"
                                        class="tab {{attr.name === '颜色' ? 'tab-pic' : 'tab-txt'}}"
-                                       ng-class="{'tab-sel':itemForm.attrs[$parent.$index].selected.id === item.id}">
+                                       ng-class="{'tab-sel':attrs[$parent.$index].selected.id === item.id,'disabled' : sku.indexOf(item.id) === -1 && attr.name !== '颜色'}">
                                         <img ng-if="attr.name === '颜色'" ng-if="attr.name === '颜色'"
-                                             src="{{item.imgUrl}}">
+                                             src="{{item.imagePath + item.imageName + '_small' + item.extName}}">
                                         <em></em>
                                         <i class="w-icon-normal icon-normal-spec-arrow sel"></i>
                                         <span class="txt">{{item.value}}</span>
@@ -105,8 +109,12 @@
             </div>
 
             <div class="btn-wrap" data-reactid=".2.1.0.1.4">
-                <a class="btn" href="/checkout">
-                    <span>立即购买</span>
+                <a ng-click="go(!(sku.indexOf(attrs[1].selected.id) === -1 && prod.attributeList.length > 1))"
+                   class="btn"
+                   ng-class="{'disabled':sku.indexOf(attrs[1].selected.id) === -1 && prod.attributeList.length > 1}"
+                   href="javascript:;">
+                    <span ng-if="!(sku.indexOf(attrs[1].selected.id) === -1 && prod.attributeList.length > 1)">立即购买</span>
+                    <span ng-if="sku.indexOf(attrs[1].selected.id) === -1 && prod.attributeList.length > 1">无货</span>
                 </a>
             </div>
         </div>
@@ -239,14 +247,15 @@
                         <li class="product-item"
                             ng-repeat="item in prods | limitTo:6">
                             <div class="item-img">
-                                <a href="/item/{{item.productId}}"
+                                <a href="/item?id={{item.productId}}"
                                    target="_blank">
                                     <img title="{{item.productName}}"
                                          ng-src="{{item.mainImageUrl}}">
                                 </a>
                             </div>
                             <div class="item-name">
-                                <a href="/item/{{item.productId}}" target="_blank"><span ng-bind="item.productName"></span></a>
+                                <a href="/item?id={{item.productId}}" target="_blank"><span
+                                        ng-bind="item.productName"></span></a>
                             </div>
                             <div class="item-amount">
                                 <div class="item-amount-div">
@@ -300,7 +309,8 @@
                                     </li>
                                     <li class="issue">
                                         <p class="question">3.全国货到付款包邮</p>
-                                        <p class="answer">除台湾、香港、澳门以及其他快递货到付款无法配送的地区外，本商城均支持全国包邮、开包验货、满意后再付款，完全“零”风险购物！</p>
+                                        <p class="answer">
+                                            除台湾、香港、澳门以及其他快递货到付款无法配送的地区外，本商城均支持全国包邮、开包验货、满意后再付款，完全“零”风险购物！</p>
                                     </li>
                                     <li class="issue">
                                         <p class="question">4.金山优选商品</p>
@@ -339,7 +349,8 @@
                                         <p class="answer">
                                             <b>金山优选为您提供7天换货尊享服务。</b><br>
                                             <b>未签收：</b>若你能验收时对商品不满意，无需支付任何费用，将商品拒签，快递员带回即可，无需对订单做任何操作。<br>
-                                            <b>已签收：</b>若您已签收商品，需办理退货，请您按寄送回发件地址，收到退货包裹并确认无误后，将在48小时内办理退款，有一对一客服与您联系，洽商退款事宜。
+                                            <b>已签收：</b>若您已签收商品，需办理退货，请您按寄送回发件地址，收到退货包裹并确认无误后，将在48小时内办理退款，有一对一客服与您联系，洽商退款事宜。<br>
+                                            <b>注：</b>内衣内裤等属于私密物品，为了个人卫生健康安全，如无质量问题，不予支持退换货
                                         </p>
                                     </li>
                                     <li class="issue">
@@ -366,6 +377,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="detail-tab cf-tab">
+    <div class="cf-tab-nav">
+        <div class="row">
+            <ul class="clearfix" style="padding-left:56px;margin-left: 25%">
+                <li class="tab-nav active" ng-class="{'active' : contentIndex === 0}" ng-click="getContent(0,true)"><a
+                        href="javascript:;">商品详情</a></li>
+                <li class="tab-nav" ng-class="{'active' : contentIndex === 1}" ng-click="getContent(1,true)"><a
+                        href="javascript:;">服务政策</a></li>
+                <li class="tab-nav" ng-class="{'active' : contentIndex === 2}" ng-click="getContent(2,true)"><a
+                        href="javascript:;">咨询与售后</a></li>
+            </ul>
+            <a class="btn button-primary" ng-click="toTop()" href="javascript:;">立即购买</a>
         </div>
     </div>
 </div>
@@ -406,3 +433,5 @@
         </div>
     </div>
 </div>
+
+<div right-bar></div>

@@ -49,7 +49,7 @@
                                 <span ng-show="subId == '10000097851693'">华歌尔制造商直供</span>
                                 <span ng-show="subId != '10000097851751' && subId != '10000097851693'">华歌尔、CK等制造商直供</span>
                             </span>
-                            <span ng-show="id == '10000097480440'">LACOSTE制造商直供</span>
+                            <span ng-show="id == '10000097480440'">GEOX制造商直供</span>
                             <span ng-show="id == '10000098490415'">阿玛尼制造商直供</span>
                         </h2>
                     </div>
@@ -59,7 +59,7 @@
 
                                 <div class="product">
                                     <div class="p-hd">
-                                        <a href="/item/{{prod.productId}}" target="_blank">
+                                        <a href="/item?id={{prod.productId}}" target="_blank">
                                             <img src="{{prod.mainImageUrl}}"/>
                                         </a>
                                     </div>
@@ -67,7 +67,7 @@
                                         <div class="tags">
                                             <span class="tag">{{prod.preContract}}</span>
                                         </div>
-                                        <h4 class="name"><a href="/item/{{prod.productId}}" target="_blank">{{prod.productName}}</a></h4>
+                                        <h4 class="name"><a href="/item?id={{prod.productId}}" target="_blank">{{prod.productName}}</a></h4>
                                         <p class="price">
                                             <span class="retail-price"><span>¥</span><span>{{prod.salesPrice}}</span></span><span
                                                 class="counter-price"><span>¥</span><span>{{prod.originalPrice}}</span></span>

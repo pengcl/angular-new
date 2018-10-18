@@ -320,6 +320,11 @@
                   line-height: 28px;
                 }
               }
+              .disabled {
+                color: #999;
+                cursor: not-allowed;
+                background: #f8f8f8;
+              }
             }
           }
         }
@@ -436,14 +441,20 @@
         border-radius: 2px;
         padding: 0;
         text-align: center;
-        color: #b4a078;
+        color: #fff;
         border: 1px solid #b4a078;
-        background-color: #f5f3ef;
+        background-color: #b4a078;
         width: 168px;
         height: 50px;
         line-height: 50px;
         font-size: 18px;
         margin-right: 10px;
+        &.disabled {
+          border: 1px solid #ddd;
+          background-color: #f8f8f8;
+          color: #ccc;
+          cursor: not-allowed;
+        }
       }
     }
     .summary-line {
@@ -738,5 +749,29 @@
   .item-txt {
     font-size: 14px;
     color: #999;
+  }
+}
+
+.detail-tab {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  display: none;
+  .button-primary {
+    position: absolute;
+    width: 120px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 30px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #b4a078;
+    color: #fff;
+    left: 50%;
+    margin-left: 425px;
+    margin-top: 5px;
+  }
+  &.position-fixed {
+    display: block;
   }
 }

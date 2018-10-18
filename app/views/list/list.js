@@ -16,15 +16,26 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     $scope.imgs = [
         {
             id: '10000097480440',
-            list: ['/static/images/banner/list/10000097480440/1.jpg', '/static/images/banner/list/10000097480440/2.jpg']
+            list: [
+                {img: '/static/images/banner/list/10000097480440/1.jpg', url: '/item?id=10000097751565'},
+                {img: '/static/images/banner/list/10000097480440/2.jpg', url: '/item?id=10000097750549'},
+            ]
         },
         {
             id: '10000097480426',
-            list: ['/static/images/banner/list/10000097480426/1.jpg', '/static/images/banner/list/10000097480426/2.jpg']
+            list: [
+                {img: '/static/images/banner/list/10000097480426/1.jpg', url: '/item?id=10000097940533'},
+                {img: '/static/images/banner/list/10000097480426/2.jpg', url: '/item?id=10000098702655'},
+            ]
         },
         {
             id: '10000098490415',
-            list: ['/static/images/banner/list/10000098490415/1.jpg', '/static/images/banner/list/10000098490415/2.jpg', '/static/images/banner/list/10000098490415/3.jpg', '/static/images/banner/list/10000098490415/4.jpg']
+            list: [
+                {img: '/static/images/banner/list/10000098490415/1.jpg', url: '/item?id=10000098521184'},
+                {img: '/static/images/banner/list/10000098490415/2.jpg', url: '/item?id=10000098521757'},
+                {img: '/static/images/banner/list/10000098490415/3.jpg', url: '/item?id=10000098600979'},
+                {img: '/static/images/banner/list/10000098490415/4.jpg', url: '/item?id=10000098600581'},
+            ]
         }
     ];
 
@@ -63,7 +74,6 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         var preIndex = index === 0 ? 1 : 0;
         $scope.filters[preIndex] = '';
         $scope.filters[index] = filters[index] === 'ASC' || filters[index] === '' ? 'DESC' : 'ASC';
-        console.log(preIndex, $scope.filters);
         ProductSvc.get($scope.subId || $scope.id, $scope.page, $scope.filters).then(function success(res) {
             $scope.prods = res.list;
             $scope.totalPages = res.totalPage;

@@ -36,6 +36,28 @@ appServices.factory('ProductSvc', ['$q', '$http', function ($q, $http) {
     service.getItem = function (id, condition) {
         var d = $q.defer();
         $http.get('/api/productinf/getProductDetail.ht?productId=' + id + (condition ? '&condition=' + condition : '')).success(function (data) {
+            var attrs = [];
+            var orderIndexs = [];
+            data.attributeList.forEach(function (item) {
+                if (item.name === '颜色') {
+                    attrs.unshift(item);
+                } else {
+                    attrs.push(item);
+                }
+            });
+            data.attributeList = attrs;
+            attrs.forEach(function (item) {
+                orderIndexs.push(item.id);
+            });
+
+            data.skuList.forEach(function (item, index) {
+                var str = item.specificationproperties.split(';');
+                if (str[0].split(':')[0] == attrs[0].id) {
+                    data.skuList[index].specificationproperties = str[0] + ';' + str[1];
+                } else {
+                    data.skuList[index].specificationproperties = str[1] + ';' + str[0];
+                }
+            });
             return d.resolve(data);
         }).error(function (error) {
             d.reject(error);

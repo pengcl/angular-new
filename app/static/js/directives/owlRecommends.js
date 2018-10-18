@@ -4,15 +4,15 @@ appDirectives.directive("owlRecommends", ['$http', '$compile', function ($http, 
     return {
         restrict: 'C',
         template: '<div ng-repeat="prod in items"  class="recommend-item item" data-merge="2"><div class="product"><div class="p-hd">\n' +
-        '                                <a href="/item/{{prod.productId}}" target="_blank">\n' +
-        '                                    <img class="main-img" ng-src="{{prod.imgList[0]}}"/><img class="sub-img" ng-src="{{prod.imgList[1]}}"/>\n' +
+        '                                <a href="/item?id={{prod.productId}}" target="_blank">\n' +
+        '                                    <img class="main-img" ng-src="{{prod.filePath + prod.fileName + \'_small\' + prod.extName}}"/><img class="sub-img" ng-src="{{prod.imgList[1]}}"/>\n' +
         '                                </a>\n' +
         '                            </div>\n' +
         '                            <div class="p-bd">\n' +
         '                                <div class="tags">\n' +
         '                                    <span class="tag">{{prod.preContract}}</span>\n' +
         '                                </div>\n' +
-        '                                <h4 class="name"><a href="/item/{{prod.productId}}" target="_blank">{{prod.productName}}</a></h4>\n' +
+        '                                <h4 class="name"><a href="/item?id={{prod.productId}}" target="_blank">{{prod.productName}}</a></h4>\n' +
         '                                <p class="price">\n' +
         '                                    <span class="retail-price"><span>¥</span><span>{{prod.salesPrice}}</span></span><span\n' +
         '                                        class="counter-price"><span>¥</span><span>{{prod.originalPrice}}</span></span>\n' +

@@ -25,6 +25,7 @@ var config = {
         sass: 'app/**/*.scss',
         js: ['app/static/js/**/*.js', 'app/component_modules/**/*.js', 'app/components/**/*.js', 'app/views/**/*.js'],
         html: 'app/*/**/*.html',
+        cdn: ['app/static/cdn/**/*.*'],
         images: ['app/**/*.gif', 'app/**/*.jpg', 'app/**/*.png'],
         favicon: 'app/favicon.ico',
         index: 'app/index.html',
@@ -60,6 +61,12 @@ gulp.task('images', function () {
         .pipe(gulp.dest(config.app.prod))
         .pipe(rev.manifest({merge: true}))
         .pipe(gulp.dest(config.rev.json + 'images'));
+});
+
+gulp.task('cdn', function () {
+    return gulp.src(config.app.cdn)
+        .pipe(gulp.dest(config.app.test + 'static/cdn/'))
+        .pipe(gulp.dest(config.app.prod + 'static/cdn/'))
 });
 
 gulp.task('favicon', function () {
@@ -162,6 +169,7 @@ gulp.task('dev', function (done) {
         ['sass'],
         ['index'],
         ['data'],
+        ['cdn'],
         done);
 });
 
@@ -174,7 +182,8 @@ gulp.task('watch', function () {
             config.app.html,
             config.app.js,
             config.app.index,
-            config.app.data
+            config.app.data,
+            config.app.cdn
         ],
         [
             'dev'

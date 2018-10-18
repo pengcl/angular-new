@@ -250,6 +250,12 @@
         .cell {
           vertical-align: middle;
           display: table-cell;
+          span, a {
+            margin: 0 7px;
+          }
+          a {
+            color: blue;
+          }
         }
       }
     }

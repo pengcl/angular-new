@@ -9,7 +9,18 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             controller: "indexController"
         });
 }]).controller('indexController', ['$scope', '$rootScope', 'LogSvc', 'ProductSvc', function ($scope, $rootScope, LogSvc, ProductSvc) {
-    $scope.imgUrls = ['/static/images/banner/1.jpg', '/static/images/banner/2.jpg', '/static/images/banner/3.jpg'];
+    $scope.imgUrls = [
+        {
+            img: '/static/images/banner/1.jpg',
+            url: '/list?id=10000097480440'
+        }, {
+            img: '/static/images/banner/2.jpg',
+            url: '/list?id=10000097480426'
+        }, {
+            img: '/static/images/banner/3.jpg',
+            url: '/item?id=10000098601144'
+        }
+    ];
 
     LogSvc.log('indexLoad', $rootScope.activeTag, $rootScope.gh).then();
 
@@ -26,7 +37,6 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
                 catalogs.push(catalog);
                 count = count + 1;
                 if (count === res.childList.length) {
-                    console.log(catalogs);
                     $scope.catalogs = catalogs;
                 }
             })
