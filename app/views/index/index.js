@@ -9,6 +9,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             controller: "indexController"
         });
 }]).controller('indexController', ['$scope', '$rootScope', 'LogSvc', 'ProductSvc', function ($scope, $rootScope, LogSvc, ProductSvc) {
+
+    $scope.floor_1 = false;
+    $scope.floor_2 = false;
+    $scope.floor_3 = false;
+
     $scope.imgUrls = [
         {
             img: '/static/images/banner/1.jpg',
@@ -22,10 +27,29 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         }
     ];
 
+    var $container = $("html,body");
+    $(window).scroll(function () {
+        var scrollTop = $(this).scrollTop();
+        if (scrollTop >= 1080 && scrollTop < 2350 && !$scope.floor_1) {
+            $scope.floor_1 = true;
+            LogSvc.log('indexScroll_1', $rootScope.activeTag, $rootScope.gh).then();
+        }
+
+        if (scrollTop >= 2350 && scrollTop < 3640 && !$scope.floor_2) {
+            $scope.floor_2 = true;
+            LogSvc.log('indexScroll_2', $rootScope.activeTag, $rootScope.gh).then();
+        }
+
+        if (scrollTop >= 3640 && !$scope.floor_3) {
+            $scope.floor_3 = true;
+            LogSvc.log('indexScroll_3', $rootScope.activeTag, $rootScope.gh).then();
+        }
+    });
+
     LogSvc.log('indexLoad', $rootScope.activeTag, $rootScope.gh).then();
 
     ProductSvc.getCatalogs().then(function success(res) {
-        var catalogs = [];
+        var catalogs = [null, null, null];
         var count = 0;
         res.childList.forEach(function (item) {
             var catalog = {};
@@ -34,7 +58,15 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
                 catalog.name = item.name;
                 catalog.sub = item.childList;
                 catalog.products = product.list;
-                catalogs.push(catalog);
+                if (item.id == '10000098490415') {
+                    catalogs[0] = catalog;
+                }
+                if (item.id == '10000097480440') {
+                    catalogs[1] = catalog;
+                }
+                if (item.id == '10000097480426') {
+                    catalogs[2] = catalog;
+                }
                 count = count + 1;
                 if (count === res.childList.length) {
                     $scope.catalogs = catalogs;

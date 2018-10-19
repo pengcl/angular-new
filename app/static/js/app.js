@@ -33,7 +33,7 @@ app.config(['$routeProvider', '$locationProvider',
     $cookieStore.put('gh', gh);
     $rootScope.gh = gh;
 
-    $rootScope.$on('$locationChangeStart', function () {
+    /*$rootScope.$on('$locationChangeStart', function () {
         _hmt.push(['_trackPageview', $location.path()]);
-    })
+    })*/
 }]);
